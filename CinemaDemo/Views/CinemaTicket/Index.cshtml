@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = ViewBag.Title;
+}
+@using CinemaDemo.ViewModels
+@model List<ViewCinemaTicketList>
+
+<h3>@ViewData["Title"]</h3>
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col" width="20%">序号</th>
+                <th scope="col" width="20%">名称</th>
+                <th scope="col" width="20%">主演</th>
+                <th scope="col" width="20%">上映时间</th>
+                <th width="20%"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@item.No</th>
+                    <td>@item.Name</td>
+                    <td>@item.Star</td>
+                    <td>@item.ReleaseTime</td>
+                    <td><a asp-action="Edit" asp-route-cinemaId="@ViewBag.cinemaId" asp-route-cinemaTicketId="@item.Id">编辑</a> <a asp-action="Delete" asp-route-cinemaId="@ViewBag.cinemaId" asp-route-cinemaTicketId="@item.Id">删除</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <a asp-action="Add" asp-route-cinemaId="@ViewBag.cinemaId">添加</a>
+    <a asp-controller="Cinema" asp-action="Index">返回主页</a>
+</div>
+

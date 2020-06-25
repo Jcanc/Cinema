@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "主页";
+}
+@using CinemaDemo.ViewModels
+@model List<ViewCinemaList>
+
+<h3>@ViewData["Title"]</h3>
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col" width="20%">序号</th>
+                <th scope="col" width="20%">名称</th>
+                <th scope="col" width="20%">地址</th>
+                <th scope="col" width="20%">星级</th>
+                <th width="20%"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@item.No</th>
+                    <td><a asp-controller="CinemaTicket" asp-action="Index" asp-route-cinemaId="@item.Id">@item.Name</a></td>
+                    <td>@item.Address</td>
+                    <td>@item.Grade</td>
+                    <td><a asp-action="Edit" asp-route-cinemaId="@item.Id">编辑</a> <a asp-action="Delete" asp-route-cinemaId="@item.Id">删除</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<a asp-action="Add">添加</a>
+
